@@ -64,8 +64,14 @@ def replay(fn: Callable):
         n_calls = int(r.get(f_name) or 0)
         print(f'{f_name} was called {n_calls} times:')
 
-        ins = [i.decode('utf-8') if isinstance(i, bytes) else "" for i in r.lrange(f_name + ":inputs", 0, -1)]
-        outs = [o.decode('utf-8') if isinstance(o, bytes) else "" for o in r.lrange(f_name + ":outputs", 0, -1)]
+        ins = [
+            i.decode('utf-8')
+            if isinstance(i, bytes) else ""
+            for i in r.lrange(f_name + ":inputs", 0, -1)]
+        outs = [
+            o.decode('utf-8')
+            if isinstance(o, bytes) else ""
+            for o in r.lrange(f_name + ":outputs", 0, -1)]
 
         for i, o in zip(ins, outs):
             print(f'{f_name}(*{i}) -> {o}')
