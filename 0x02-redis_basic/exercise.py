@@ -30,7 +30,7 @@ class Cache():
     def get(
             self,
             key: str,
-            fn: callable = None
+            fn: Callable = None
     ) -> Union[str, bytes, int, float]:
         """Get method
 
