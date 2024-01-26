@@ -43,3 +43,25 @@ class Cache():
         if fn:
             return fn(self._redis.get(key))
         return self._redis.get(key)
+
+    def get_str(self, key: str) -> str:
+        """Get string
+
+        Args:
+            key (str): key to get
+
+        Returns:
+            str: string
+        """
+        return self.get(key, str)
+
+    def get_int(self, key: str) -> int:
+        """Get integer
+
+        Args:
+            key (str): key to get
+
+        Returns:
+            int: integer
+        """
+        return self.get(key, int)
