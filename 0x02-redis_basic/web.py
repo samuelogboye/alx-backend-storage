@@ -12,10 +12,7 @@ store = redis.Redis()
 def count_url_access(method):
     """
     Decorator function to count URL access and cache the data.
-    """
-    @wraps(method)
-    def wrapper(url):
-        """
+
         Decorator function that caches the result of the method
         for a given URL.
 
@@ -24,7 +21,9 @@ def count_url_access(method):
 
         Returns:
             str: The cached HTML content for the given URL.
-        """
+    """
+    @wraps(method)
+    def wrapper(url):
         cached_key = "cached:" + url
         cached_data = store.get(cached_key)
         if cached_data:
